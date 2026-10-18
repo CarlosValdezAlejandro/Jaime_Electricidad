@@ -1,6 +1,6 @@
-# Página web — Electricista matriculado
+# Jaime Electricidad — Página web
 
-Página de una sola hoja (landing) para un electricista. Está hecha con HTML, CSS y JavaScript comunes, sin programas extra, y se publica gratis con **GitHub Pages**.
+Página de una sola hoja (landing) de **Jaime Electricidad**, electricista habilitado por ERSEP en Villa Carlos Paz y alrededores. Está hecha con HTML, CSS y JavaScript comunes, sin programas extra, y se publica gratis con **GitHub Pages**.
 
 Este instructivo está pensado para alguien que **no programa**. Para cambiar casi todo alcanza con buscar una palabra y reemplazarla.
 
@@ -10,9 +10,9 @@ Este instructivo está pensado para alguien que **no programa**. Para cambiar ca
 
 | Archivo o carpeta | Para qué sirve | ¿Lo tengo que tocar? |
 |---|---|---|
-| `index.html` | Todos los textos y datos de la página | **Sí**, acá está casi todo |
-| `img/trabajos/` | Fotos de los trabajos realizados | **Sí**, subí tus fotos |
-| `img/foto-perfil.jpg` | Tu foto para la sección "Sobre mí" | **Sí** |
+| `index.html` | Todos los textos y datos de la página | Solo para cambiar algún dato o texto |
+| `img/trabajos/` | Fotos de los trabajos realizados | **Sí**, subí las fotos reales |
+| `img/foto-perfil.jpg` | Foto de Jaime para la sección "Sobre mí" | **Sí** |
 | `css/estilos.css` | Colores y diseño | Solo si querés cambiar colores |
 | `js/main.js` | Animaciones y fotos ampliadas | No |
 | `img/og-imagen.jpg` | Imagen que aparece al compartir el link | No (ya sirve así) |
@@ -40,49 +40,41 @@ Abrí la carpeta con [Visual Studio Code](https://code.visualstudio.com/) (grati
 
 ---
 
-## 3. Datos que tenés que completar
+## 3. Datos cargados y cómo cambiarlos
 
-Todo lo que está entre **[CORCHETES]** es para reemplazar. Lo más cómodo es usar "Reemplazar todo" con cada uno:
-
-| Buscá exactamente | Reemplazalo por | Ejemplo |
+| Dato | Cómo está ahora | Para cambiarlo, buscá |
 |---|---|---|
-| `[NOMBRE DEL ELECTRICISTA]` | Tu nombre y apellido | Juan Pérez |
-| `[XXXX]` | Tu número de matrícula | 12345 |
-| `[X]` | Años de experiencia | 15 |
-| `[ZONA]` | La zona general donde trabajás | Zona Oeste del GBA |
-| `[LOCALIDAD 1]` … `[LOCALIDAD 6]` | Barrios o localidades | Morón, Haedo, Castelar… |
-| `[TELÉFONO]` | Tu teléfono como lo querés mostrar | 11 2345-6789 |
-| `[HORARIO]` | Tus horarios (aparece 2 veces: lunes a viernes y sábados) | 8 a 18 h |
-| `+54XXXXXXXXXX` | Tu número para llamadas (ver punto 4) | +5491123456789 |
-| `549XXXXXXXXXX` | Tu número de WhatsApp (ver punto 4) | 5491123456789 |
+| Nombre de la empresa | Jaime Electricidad | `Jaime Electricidad` |
+| Nombre en "Sobre mí" | Hola, soy Jaime | `soy Jaime` |
+| Habilitación | Habilitado por ERSEP | `ERSEP` |
+| Experiencia | Más de 10 años | `10 años` y `+10` |
+| Zona | Villa Carlos Paz y alrededores | `Villa Carlos Paz` |
+| Localidades | Lista en la sección "Zona de cobertura" | `ZONA DE COBERTURA` |
+| Días | Lunes a sábado | `Lunes a sábado` |
+| Horario | A coordinar | `A coordinar` |
+| Teléfono que se lee | 3541 59-2372 | `3541 59-2372` |
+| Número para llamar y para WhatsApp | 5493541592372 | `5493541592372` (ver punto 4) |
 
-Si trabajás en menos (o más) localidades, borrá (o copiá) líneas como esta en la sección "ZONA DE COBERTURA":
+Para agregar o sacar localidades, en la sección "ZONA DE COBERTURA" copiá o borrá líneas como esta:
 
 ```html
-<li>[LOCALIDAD 1]</li>
+<li>Villa Carlos Paz</li>
 ```
 
 ---
 
-## 4. Teléfono y WhatsApp (importante)
+## 4. Teléfono y WhatsApp
 
-Los números van escritos **todos juntos, sin espacios, guiones ni paréntesis**.
+Se usa el mismo número para llamadas y WhatsApp. Si alguna vez cambia, buscá **`5493541592372`** y reemplazalo en todo el archivo (aparece 6 veces: 3 botones de llamar y 3 de WhatsApp). Acordate de cambiar también el número que se lee (`3541 59-2372`).
 
-### WhatsApp → buscá `549XXXXXXXXXX` (aparece 3 veces)
+El número va escrito **todo junto, sin espacios, guiones ni paréntesis**:
+**549** + código de área **sin el 0** + número **sin el 15**.
 
-Se escribe: **549** + código de área **sin el 0** + número **sin el 15**.
-
-| Tu número | Cómo va |
+| Número | Cómo va |
 |---|---|
-| (011) 15 2345-6789 | `5491123456789` |
-| (0351) 15 234-5678 | `5493512345678` |
+| (03541) 15 59-2372 | `5493541592372` |
 
-### Llamadas → buscá `+54XXXXXXXXXX` (aparece 3 veces)
-
-- Si es **celular**: igual que WhatsApp pero con `+` adelante → `+5491123456789`
-- Si es **teléfono fijo**: sin el 9 → `+541141234567`
-
-> ⚠️ Si es un celular y te olvidás del **9**, el botón "Llamar" marca un número fijo y no te llega la llamada.
+> ⚠️ El **9** después del 54 es lo que indica que es un celular. Si se borra, el botón "Llamar" marca un número fijo y la llamada no llega. Si algún día se usa un **teléfono fijo** para llamadas, ahí sí va sin el 9 (por ejemplo `+543541123456`).
 
 ### Cambiar el mensaje que llega por WhatsApp
 
@@ -90,7 +82,7 @@ En los links de WhatsApp vas a ver `?text=Hola, quiero consultar por un trabajo 
 
 ### Probarlo
 
-Después de publicar, abrí la página **en tu celular** y tocá "Llamar" y "Escribir por WhatsApp" para confirmar que abren tu número.
+Después de publicar, abrí la página **en tu celular** y tocá "Llamar" y "Escribir por WhatsApp" para confirmar que abren el número correcto.
 
 ---
 
@@ -130,33 +122,29 @@ En `index.html`, buscá la sección "TRABAJOS REALIZADOS". Cada foto tiene dos t
 
 ## 6. Foto de perfil
 
-Reemplazá **`img/foto-perfil.jpg`** por tu foto, con el mismo nombre. Conviene que sea **vertical** (por ejemplo 800 × 1000 píxeles), con buena luz y la cara bien visible.
+Reemplazá **`img/foto-perfil.jpg`** por la foto de Jaime, con el mismo nombre. Conviene que sea **vertical** (por ejemplo 800 × 1000 píxeles), con buena luz y la cara bien visible.
 
 ---
 
 ## 7. Mapa de Google Maps
 
-1. Abrí [Google Maps](https://www.google.com/maps) y buscá tu zona o localidad.
-2. Tocá **Compartir → Insertar un mapa → Copiar HTML**.
-3. En `index.html` buscá `mapa__placeholder`. Vas a ver un bloque así:
+Ya hay un mapa centrado en Villa Carlos Paz. Para cambiarlo, en `index.html` buscá `maps.google.com`:
 
-   ```html
-   <div class="mapa__placeholder">
-     ...
-   </div>
-   ```
+```html
+src="https://maps.google.com/maps?q=Villa+Carlos+Paz,+Cordoba,+Argentina&z=14&output=embed"
+```
 
-4. Borrá ese bloque completo (desde `<div class="mapa__placeholder">` hasta su `</div>`) y pegá en su lugar lo que copiaste de Google Maps (empieza con `<iframe`).
-
-No hace falta cambiar el tamaño que trae el código de Google: la página lo acomoda sola.
+- **Otro lugar:** cambiá lo que está después de `q=` (los espacios se escriben con `+`).
+- **Más cerca o más lejos:** cambiá el número de `z=14`. Más alto acerca, más bajo aleja.
+- **Usar el código oficial de Google:** en Google Maps tocá **Compartir → Insertar un mapa → Copiar HTML** y reemplazá todo el `<iframe ...></iframe>` por lo que copiaste. No hace falta tocar el tamaño: la página lo acomoda sola.
 
 ---
 
 ## 8. Otros cambios comunes
 
 - **Textos:** buscá la frase que querés cambiar con Ctrl + F y escribí encima. Cuidado de no borrar los signos `<` `>` ni las comillas `"`.
-- **Servicios:** en la sección "SERVICIOS", cada servicio es un bloque `<li class="tarjeta revelar"> ... </li>`. Borrá el que no hagas o cambiá su título (`<h3>`) y su texto (`<p>`).
-- **Color de acento:** en `css/estilos.css`, al principio, está `--acento: #ffd23f;` (amarillo). Ahí mismo hay una nota explicando cómo pasarlo a celeste.
+- **Servicios:** en la sección "SERVICIOS", cada servicio es un bloque `<li class="tarjeta revelar"> ... </li>`. Borrá el que no se haga o cambiá su título (`<h3>`) y su texto (`<p>`).
+- **Color de acento:** en `css/estilos.css`, al principio, está `--acento: #ffb81c;` (ámbar). Ahí mismo hay una nota explicando cómo cambiarlo por otro color.
 
 ---
 
@@ -181,4 +169,4 @@ Cuando la página ya esté publicada, en `index.html` buscá `og:image`. Hay dos
 
 ## 10. Privacidad
 
-La página no usa cookies, ni localStorage, ni herramientas de seguimiento. Lo único externo que se carga es de Google: las tipografías (Google Fonts) y, cuando lo pegues, el mapa de Google Maps.
+La página no usa cookies, ni localStorage, ni herramientas de seguimiento propias. Lo único externo que se carga es de Google: las tipografías (Google Fonts) y el mapa de Google Maps, que puede guardar sus propias cookies.

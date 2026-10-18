@@ -27,7 +27,7 @@
 
 /* 1. VARIABLES =============================================================
    Cambiando estos valores se cambia el aspecto de toda la página.
-   Por ejemplo, para usar celeste en lugar de amarillo:
+   Por ejemplo, para usar celeste en lugar de ámbar:
      --acento: #4cc9f0;  --acento-rgb: 76, 201, 240;  --acento-hover: #7dd8f5;
    ========================================================================== */
 :root {
@@ -42,11 +42,11 @@
   --texto: #e8eef5;
   --texto-suave: #a3b3c6;
 
-  /* Color eléctrico de acento (amarillo). "-rgb" se usa para transparencias. */
-  --acento: #ffd23f;
-  --acento-rgb: 255, 210, 63;
-  --acento-hover: #ffe17a;
-  --sobre-acento: #0a0e14;      /* texto encima del amarillo */
+  /* Color eléctrico de acento (ámbar). "-rgb" se usa para transparencias. */
+  --acento: #ffb81c;
+  --acento-rgb: 255, 184, 28;
+  --acento-hover: #ffc94d;
+  --sobre-acento: #0a0e14;      /* texto encima del ámbar */
 
   /* Verde de WhatsApp */
   --whatsapp: #25d366;
@@ -210,7 +210,7 @@ html.sin-scroll {
   transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-/* Botón amarillo (llamar) */
+/* Botón ámbar (llamar) */
 .boton--primario {
   background-color: var(--acento);
   color: var(--sobre-acento);
@@ -313,7 +313,7 @@ html.sin-scroll {
   transition: color 0.2s ease;
 }
 
-/* Rayita amarilla que crece debajo del link al pasar el mouse */
+/* Rayita de color que crece debajo del link al pasar el mouse */
 .nav a::after {
   content: "";
   position: absolute;
@@ -466,7 +466,7 @@ html.sin-scroll {
   gap: 0.55em;
 }
 
-/* Cuadradito amarillo tipo "nodo" antes de cada frase */
+/* Cuadradito de color tipo "nodo" antes de cada frase */
 .hero__datos li::before {
   content: "";
   width: 7px;
@@ -809,7 +809,7 @@ html.sin-scroll {
   border-radius: var(--radio);
 }
 
-/* Esquinas amarillas tipo "visor" alrededor de la foto */
+/* Esquinas de color tipo "visor" alrededor de la foto */
 .sobre-mi__foto::before,
 .sobre-mi__foto::after {
   content: "";
@@ -1021,7 +1021,7 @@ html.sin-scroll {
   color: var(--texto-suave);
 }
 
-/* Mapa de Google Maps (o el recuadro de reemplazo mientras no se pegue) */
+/* Mapa de Google Maps */
 .mapa {
   position: relative;
   min-height: 300px;
@@ -1031,47 +1031,13 @@ html.sin-scroll {
   background-color: var(--superficie);
 }
 
-/* El iframe que se pegue ocupa todo el recuadro, sin importar su tamaño original */
+/* El mapa ocupa todo el recuadro, sin importar el tamaño que traiga el código de Google */
 .mapa iframe {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
-}
-
-.mapa__placeholder {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 24px;
-  color: var(--texto-suave);
-  text-align: center;
-  background-image:
-    linear-gradient(rgba(var(--acento-rgb), 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(var(--acento-rgb), 0.06) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-
-.mapa__placeholder p {
-  margin: 0;
-}
-
-.mapa__icono {
-  width: 44px;
-  height: 44px;
-  margin-bottom: 8px;
-  color: var(--acento);
-}
-
-.mapa__titulo {
-  color: var(--texto);
-  font-family: var(--fuente-titulos);
-  font-weight: 700;
 }
 
 
