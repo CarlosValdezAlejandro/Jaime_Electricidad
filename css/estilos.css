@@ -1,0 +1,1383 @@
+/* ==========================================================================
+   ESTILOS DE LA LANDING — Electricista matriculado
+   --------------------------------------------------------------------------
+   Está hecho "mobile first": primero van los estilos para celular y, más
+   abajo, los ajustes para pantallas más grandes (tablet y computadora).
+
+   Índice
+   1.  Variables (colores, tipografías y medidas)
+   2.  Base
+   3.  Utilidades
+   4.  Botones
+   5.  Encabezado
+   6.  Hero (portada)
+   7.  Secciones (estructura común)
+   8.  Servicios
+   9.  Trabajos realizados (galería)
+   10. Lightbox (foto ampliada)
+   11. Sobre mí
+   12. Zona de cobertura
+   13. Contacto
+   14. Pie de página
+   15. Botón flotante de WhatsApp
+   16. Animaciones (solo si la persona no pidió reducir el movimiento)
+   17. Pantallas medianas y grandes
+   ========================================================================== */
+
+
+/* 1. VARIABLES =============================================================
+   Cambiando estos valores se cambia el aspecto de toda la página.
+   Por ejemplo, para usar celeste en lugar de amarillo:
+     --acento: #4cc9f0;  --acento-rgb: 76, 201, 240;  --acento-hover: #7dd8f5;
+   ========================================================================== */
+:root {
+  /* Fondos y superficies (de más oscuro a más claro) */
+  --fondo: #0a0e14;
+  --fondo-alt: #0e141c;
+  --superficie: #121a24;
+  --superficie-2: #172130;
+  --borde: #233042;
+
+  /* Textos */
+  --texto: #e8eef5;
+  --texto-suave: #a3b3c6;
+
+  /* Color eléctrico de acento (amarillo). "-rgb" se usa para transparencias. */
+  --acento: #ffd23f;
+  --acento-rgb: 255, 210, 63;
+  --acento-hover: #ffe17a;
+  --sobre-acento: #0a0e14;      /* texto encima del amarillo */
+
+  /* Verde de WhatsApp */
+  --whatsapp: #25d366;
+  --whatsapp-hover: #4ae083;
+  --sobre-whatsapp: #06140c;    /* texto encima del verde */
+
+  /* Tipografías */
+  --fuente-titulos: "Orbitron", "Segoe UI", system-ui, sans-serif;
+  --fuente-texto: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Medidas */
+  --ancho-max: 1120px;
+  --alto-encabezado: 64px;
+  --radio: 16px;
+  --radio-chico: 12px;
+}
+
+
+/* 2. BASE ================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* Al saltar a una sección, deja lugar para el encabezado fijo */
+  scroll-padding-top: calc(var(--alto-encabezado) + 16px);
+}
+
+body {
+  margin: 0;
+  background-color: var(--fondo);
+  color: var(--texto);
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--fuente-titulos);
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--acento);
+  text-underline-offset: 3px;
+}
+
+figure {
+  margin: 0;
+}
+
+/* Contorno bien visible al navegar con teclado */
+:focus-visible {
+  outline: 3px solid var(--acento);
+  outline-offset: 3px;
+}
+
+/* Bloquea el scroll de la página mientras está abierta la foto ampliada */
+html.sin-scroll {
+  overflow: hidden;
+}
+
+
+/* 3. UTILIDADES ============================================================ */
+
+/* Caja centrada con márgenes laterales */
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+/* Saca viñetas y espacios de las listas */
+.lista-limpia {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor de los íconos reutilizables (no ocupa lugar) */
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Tamaño estándar de los íconos dentro de textos y botones */
+.icono {
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+}
+
+/* Link "Saltar al contenido": escondido hasta que recibe el foco con Tab */
+.saltar {
+  position: absolute;
+  top: -100px;
+  left: 12px;
+  z-index: 100;
+  padding: 0.6em 1em;
+  border-radius: 8px;
+  background-color: var(--acento);
+  color: var(--sobre-acento);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.saltar:focus {
+  top: 12px;
+}
+
+
+/* 4. BOTONES =============================================================== */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  min-height: 52px;
+  padding: 0.85em 1.5em;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  font-family: var(--fuente-texto);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+/* Botón amarillo (llamar) */
+.boton--primario {
+  background-color: var(--acento);
+  color: var(--sobre-acento);
+  box-shadow: 0 8px 24px -10px rgba(var(--acento-rgb), 0.7);
+}
+
+.boton--primario:hover {
+  background-color: var(--acento-hover);
+  box-shadow: 0 10px 28px -8px rgba(var(--acento-rgb), 0.8);
+}
+
+/* Botón verde (WhatsApp) */
+.boton--whatsapp {
+  background-color: var(--whatsapp);
+  color: var(--sobre-whatsapp);
+  box-shadow: 0 8px 24px -10px rgba(37, 211, 102, 0.6);
+}
+
+.boton--whatsapp:hover {
+  background-color: var(--whatsapp-hover);
+}
+
+/* Versión chica (encabezado) */
+.boton--chico {
+  min-height: 42px;
+  padding: 0.5em 1.1em;
+  font-size: 0.92rem;
+  flex-shrink: 0;
+}
+
+
+/* 5. ENCABEZADO ============================================================ */
+.encabezado {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid var(--borde);
+  background-color: rgba(10, 14, 20, 0.88);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.encabezado__interior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: var(--alto-encabezado);
+}
+
+/* Logo: rayo + nombre */
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  min-width: 0;
+  color: var(--texto);
+  font-family: var(--fuente-titulos);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+}
+
+.marca__icono {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  padding: 7px;
+  border: 1px solid rgba(var(--acento-rgb), 0.35);
+  border-radius: 10px;
+  background-color: rgba(var(--acento-rgb), 0.12);
+  color: var(--acento);
+}
+
+/* Si el nombre es largo, se corta con "..." en lugar de romper el diseño */
+.marca__nombre {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Menú: oculto en celular, visible desde 900px (ver sección 17) */
+.nav {
+  display: none;
+}
+
+.nav__lista {
+  display: flex;
+  gap: 28px;
+}
+
+.nav a {
+  position: relative;
+  padding: 6px 0;
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+/* Rayita amarilla que crece debajo del link al pasar el mouse */
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: var(--acento);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.nav a:hover {
+  color: var(--texto);
+}
+
+.nav a:hover::after {
+  transform: scaleX(1);
+}
+
+
+/* 6. HERO (PORTADA) ======================================================== */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  /* Ocupa casi toda la primera pantalla, con un máximo para monitores altos */
+  min-height: min(760px, calc(100vh - var(--alto-encabezado)));
+  min-height: min(760px, calc(100svh - var(--alto-encabezado)));
+  padding: 48px 0 64px;
+  border-bottom: 1px solid var(--borde);
+  background:
+    radial-gradient(ellipse 90% 60% at 85% 0%, rgba(var(--acento-rgb), 0.12), transparent 65%),
+    var(--fondo);
+}
+
+/* Dibujo de pistas de circuito de fondo */
+.hero__circuito {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  color: var(--acento);
+  pointer-events: none;
+  /* En celular se desvanece hacia la izquierda para no molestar al texto */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 80%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 80%);
+}
+
+.hero__circuito .pistas {
+  stroke: currentColor;
+  stroke-opacity: 0.22;
+}
+
+.hero__circuito .nodos {
+  fill: var(--fondo);
+  stroke: currentColor;
+  stroke-opacity: 0.5;
+}
+
+/* Pulso de corriente: invisible por defecto, se activa en la sección 16 */
+.hero__circuito .corriente {
+  stroke: currentColor;
+  stroke-dasharray: 10 110;
+  stroke-dashoffset: 120;
+  opacity: 0;
+}
+
+.hero__interior {
+  position: relative;
+}
+
+/* Pastilla de arriba con la matrícula */
+.hero__etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-bottom: 22px;
+  padding: 0.4em 0.95em;
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  background-color: rgba(18, 26, 36, 0.75);
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Lucecita tipo LED encendido */
+.punto-vivo {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: var(--acento);
+  box-shadow: 0 0 8px rgba(var(--acento-rgb), 0.8);
+}
+
+.hero__titulo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45em;
+  margin-bottom: 20px;
+}
+
+.hero__nombre {
+  font-size: clamp(1.9rem, 8vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.05;
+  overflow-wrap: break-word;
+}
+
+.hero__profesion {
+  color: var(--acento);
+  font-size: clamp(0.95rem, 3.8vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-shadow: 0 0 22px rgba(var(--acento-rgb), 0.45);
+}
+
+.hero__texto {
+  max-width: 34em;
+  margin-bottom: 30px;
+  color: var(--texto-suave);
+  font-size: 1.08rem;
+}
+
+/* En celular los botones van uno abajo del otro, a todo el ancho */
+.hero__botones {
+  display: grid;
+  gap: 12px;
+}
+
+/* Frases cortas debajo de los botones */
+.hero__datos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin-top: 30px;
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+.hero__datos li {
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+}
+
+/* Cuadradito amarillo tipo "nodo" antes de cada frase */
+.hero__datos li::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 2px;
+  background-color: var(--acento);
+  box-shadow: 0 0 10px rgba(var(--acento-rgb), 0.7);
+}
+
+
+/* 7. SECCIONES (ESTRUCTURA COMÚN) ========================================== */
+.seccion {
+  position: relative;
+  padding: 72px 0;
+}
+
+/* Secciones alternadas con un fondo apenas distinto y una grilla muy sutil */
+.seccion--alt {
+  border-block: 1px solid var(--borde);
+  background-color: var(--fondo-alt);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.seccion__encabezado {
+  max-width: 40rem;
+  margin-bottom: 36px;
+}
+
+/* Etiqueta chica arriba de cada título, con una línea de circuito */
+.seccion__etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75em;
+  margin-bottom: 14px;
+  color: var(--acento);
+  font-family: var(--fuente-titulos);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* La línea con un punto en la punta, dibujada solo con CSS */
+.seccion__etiqueta::before {
+  content: "";
+  width: 36px;
+  height: 8px;
+  flex-shrink: 0;
+  background:
+    linear-gradient(currentColor, currentColor) left center / calc(100% - 6px) 2px no-repeat,
+    radial-gradient(circle, currentColor 3px, transparent 3.5px) right center / 8px 8px no-repeat;
+}
+
+.seccion__titulo {
+  margin-bottom: 14px;
+  font-size: clamp(1.55rem, 6vw, 2.5rem);
+  font-weight: 700;
+}
+
+.seccion__bajada {
+  color: var(--texto-suave);
+  font-size: 1.05rem;
+}
+
+
+/* 8. SERVICIOS ============================================================= */
+.servicios {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+/* Tarjeta de servicio. En celular: ícono a la izquierda y texto a la derecha */
+.tarjeta {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 16px;
+  align-items: start;
+  overflow: hidden;
+  padding: 20px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: linear-gradient(180deg, var(--superficie-2), var(--superficie));
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+/* Línea de luz arriba de la tarjeta que aparece al pasar el mouse */
+.tarjeta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--acento), transparent);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.tarjeta__icono {
+  grid-row: span 2;
+  width: 48px;
+  height: 48px;
+  padding: 11px;
+  border: 1px solid rgba(var(--acento-rgb), 0.28);
+  border-radius: 12px;
+  background-color: rgba(var(--acento-rgb), 0.1);
+  color: var(--acento);
+}
+
+.tarjeta h3 {
+  margin-bottom: 6px;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.tarjeta p {
+  margin: 0;
+  color: var(--texto-suave);
+  font-size: 0.97rem;
+}
+
+/* Efecto al pasar el mouse (solo en dispositivos con mouse) */
+@media (hover: hover) {
+  .tarjeta:hover {
+    border-color: rgba(var(--acento-rgb), 0.45);
+    box-shadow: 0 16px 32px -18px rgba(var(--acento-rgb), 0.45);
+  }
+
+  .tarjeta:hover::before {
+    opacity: 1;
+  }
+}
+
+
+/* 9. TRABAJOS REALIZADOS (GALERÍA) ========================================= */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.galeria__enlace {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-chico);
+  background-color: var(--superficie);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.galeria__enlace img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Lupa en la esquina: avisa que la foto se puede ampliar */
+.galeria__enlace::after {
+  content: "";
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--acento) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a0e14' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='6'/%3E%3Cpath d='m20 20-4.5-4.5M11 8.5v5M8.5 11h5'/%3E%3C/svg%3E") center / 18px no-repeat;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+}
+
+.galeria figcaption {
+  margin-top: 8px;
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+@media (hover: hover) {
+  .galeria__enlace:hover {
+    border-color: rgba(var(--acento-rgb), 0.55);
+    box-shadow: 0 14px 30px -16px rgba(var(--acento-rgb), 0.5);
+  }
+}
+
+
+/* 10. LIGHTBOX (FOTO AMPLIADA) =============================================
+   Usa el elemento <dialog> del navegador: se encarga solo de tapar la página,
+   atrapar el foco del teclado y cerrar con la tecla Escape.
+   ========================================================================== */
+.lightbox {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  /* Lugar arriba para "Cerrar" y abajo para las flechas */
+  padding: 76px 12px 92px;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  color: var(--texto);
+}
+
+.lightbox[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fondo oscuro detrás de la foto */
+.lightbox::backdrop {
+  background-color: rgba(4, 7, 11, 0.94);
+}
+
+.lightbox__figura {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  max-width: min(1100px, 100%);
+}
+
+.lightbox__imagen {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: calc(100vh - 220px);
+  max-height: calc(100dvh - 220px);
+  border-radius: 10px;
+  object-fit: contain;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.lightbox__epigrafe {
+  color: var(--texto);
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* "2 / 6" arriba a la izquierda */
+.lightbox__contador {
+  position: absolute;
+  top: 26px;
+  left: 18px;
+  margin: 0;
+  color: var(--acento);
+  font-family: var(--fuente-titulos);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+
+/* Botones del lightbox (cerrar y flechas) */
+.lightbox__cerrar,
+.lightbox__flecha {
+  position: absolute;
+  border: 1px solid var(--borde);
+  background-color: rgba(18, 26, 36, 0.9);
+  color: var(--texto);
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.lightbox__cerrar:hover,
+.lightbox__flecha:hover {
+  border-color: var(--acento);
+  background-color: var(--superficie-2);
+}
+
+.lightbox__cerrar {
+  top: 14px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  min-height: 46px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.lightbox__cerrar svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* En celular las flechas van abajo, cómodas para el pulgar */
+.lightbox__flecha {
+  bottom: 22px;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+}
+
+.lightbox__flecha svg {
+  width: 24px;
+  height: 24px;
+}
+
+.lightbox__flecha--anterior {
+  left: calc(50% - 66px);
+}
+
+.lightbox__flecha--siguiente {
+  right: calc(50% - 66px);
+}
+
+
+/* 11. SOBRE MÍ ============================================================= */
+.sobre-mi {
+  display: grid;
+  gap: 48px;
+  align-items: center;
+}
+
+.sobre-mi__foto {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  margin-inline: auto;
+}
+
+.sobre-mi__foto img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+/* Esquinas amarillas tipo "visor" alrededor de la foto */
+.sobre-mi__foto::before,
+.sobre-mi__foto::after {
+  content: "";
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  border: 2px solid var(--acento);
+  pointer-events: none;
+}
+
+.sobre-mi__foto::before {
+  top: -10px;
+  left: -10px;
+  border-right: 0;
+  border-bottom: 0;
+  border-top-left-radius: 12px;
+}
+
+.sobre-mi__foto::after {
+  right: -10px;
+  bottom: -10px;
+  border-top: 0;
+  border-left: 0;
+  border-bottom-right-radius: 12px;
+}
+
+.sobre-mi__texto > p {
+  color: var(--texto-suave);
+  font-size: 1.04rem;
+}
+
+/* Cajitas con años de experiencia y matrícula */
+.sobre-mi__datos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 28px 0;
+}
+
+.sobre-mi__datos li {
+  padding: 16px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-chico);
+  background-color: var(--superficie);
+}
+
+.sobre-mi__datos strong {
+  display: block;
+  color: var(--acento);
+  font-family: var(--fuente-titulos);
+  font-size: clamp(1.1rem, 5vw, 1.6rem);
+  line-height: 1.2;
+  overflow-wrap: break-word;
+}
+
+.sobre-mi__datos span {
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+/* Lista con tildes */
+.sobre-mi__valores {
+  display: grid;
+  gap: 10px;
+}
+
+.sobre-mi__valores li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7em;
+}
+
+.sobre-mi__valores .icono {
+  margin-top: 0.15em;
+  color: var(--acento);
+}
+
+
+/* 12. ZONA DE COBERTURA ==================================================== */
+.zona {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Cada localidad es una "pastilla" con un nodo de circuito */
+.zona li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0.6em 1.1em;
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  background-color: var(--superficie);
+  font-weight: 500;
+}
+
+.zona li::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+  border: 2px solid var(--acento);
+  border-radius: 50%;
+}
+
+.zona__nota {
+  margin-top: 26px;
+  color: var(--texto-suave);
+}
+
+
+/* 13. CONTACTO ============================================================= */
+.contacto {
+  display: grid;
+  gap: 16px;
+}
+
+.contacto__lista {
+  display: grid;
+  gap: 12px;
+}
+
+/* Cada dato de contacto es una tarjeta. Las de teléfono y WhatsApp son
+   links enteros, así es fácil tocarlas con el dedo. */
+.contacto__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  height: 100%;
+  padding: 20px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background-color: var(--superficie);
+  color: var(--texto);
+  text-decoration: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+@media (hover: hover) {
+  .contacto__item--enlace:hover {
+    border-color: rgba(var(--acento-rgb), 0.5);
+    box-shadow: 0 14px 30px -18px rgba(var(--acento-rgb), 0.5);
+  }
+}
+
+.contacto__icono {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  padding: 11px;
+  border-radius: 12px;
+  background-color: rgba(var(--acento-rgb), 0.12);
+  color: var(--acento);
+}
+
+.contacto__icono--whatsapp {
+  background-color: rgba(37, 211, 102, 0.14);
+  color: var(--whatsapp);
+}
+
+.contacto__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex-grow: 1;
+}
+
+.contacto__etiqueta {
+  color: var(--texto-suave);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.contacto__valor {
+  font-size: 1.2rem;
+  font-weight: 700;
+  overflow-wrap: break-word;
+}
+
+.contacto__ayuda {
+  margin-top: 2px;
+  color: var(--acento);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Tabla simple de horarios */
+.horarios {
+  margin-top: 6px;
+}
+
+.horarios li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2px 12px;
+  padding: 7px 0;
+  border-bottom: 1px dashed var(--borde);
+}
+
+.horarios li:last-child {
+  border-bottom: 0;
+}
+
+.horarios span {
+  color: var(--texto-suave);
+}
+
+/* Mapa de Google Maps (o el recuadro de reemplazo mientras no se pegue) */
+.mapa {
+  position: relative;
+  min-height: 300px;
+  overflow: hidden;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background-color: var(--superficie);
+}
+
+/* El iframe que se pegue ocupa todo el recuadro, sin importar su tamaño original */
+.mapa iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.mapa__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 24px;
+  color: var(--texto-suave);
+  text-align: center;
+  background-image:
+    linear-gradient(rgba(var(--acento-rgb), 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--acento-rgb), 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.mapa__placeholder p {
+  margin: 0;
+}
+
+.mapa__icono {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 8px;
+  color: var(--acento);
+}
+
+.mapa__titulo {
+  color: var(--texto);
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+}
+
+
+/* 14. PIE DE PÁGINA ======================================================== */
+.pie {
+  /* Espacio extra abajo para que el botón flotante no tape el texto */
+  padding: 44px 0 112px;
+  border-top: 1px solid var(--borde);
+  background-color: var(--fondo-alt);
+  color: var(--texto-suave);
+  font-size: 0.92rem;
+  text-align: center;
+}
+
+.pie__interior p {
+  margin: 0 0 6px;
+}
+
+.pie__marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  color: var(--texto);
+  font-family: var(--fuente-titulos);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.pie__marca .icono {
+  color: var(--acento);
+}
+
+.pie__arriba {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 4px;
+  font-weight: 600;
+}
+
+
+/* 15. BOTÓN FLOTANTE DE WHATSAPP =========================================== */
+.whatsapp-flotante {
+  position: fixed;
+  right: 16px;
+  /* "safe-area" evita que quede debajo de la barra de los iPhone */
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  z-index: 45;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  min-height: 56px;
+  padding: 0 20px 0 16px;
+  border-radius: 999px;
+  background-color: var(--whatsapp);
+  color: var(--sobre-whatsapp);
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.7), 0 0 0 4px rgba(37, 211, 102, 0.18);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.whatsapp-flotante svg {
+  width: 26px;
+  height: 26px;
+}
+
+.whatsapp-flotante:hover {
+  background-color: var(--whatsapp-hover);
+}
+
+
+/* 16. ANIMACIONES ==========================================================
+   Todo lo que se mueve está dentro de este bloque, que solo se aplica si la
+   persona NO activó "reducir movimiento" en su celular o computadora.
+   ========================================================================== */
+@keyframes encendido {
+  /* Como un tubo que titila un par de veces antes de quedar prendido */
+  0%       { opacity: 0; }
+  10%      { opacity: 0.9; }
+  15%      { opacity: 0.35; }
+  24%      { opacity: 1; }
+  30%      { opacity: 0.6; }
+  38%,
+  100%     { opacity: 1; }
+}
+
+@keyframes latido {
+  0%   { box-shadow: 0 0 0 0 rgba(var(--acento-rgb), 0.55); }
+  70%,
+  100% { box-shadow: 0 0 0 9px rgba(var(--acento-rgb), 0); }
+}
+
+@keyframes corriente {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes revelar {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Efecto "encendido" del título, una sola vez al entrar */
+  .hero__nombre {
+    animation: encendido 1.4s ease-out both;
+  }
+
+  .hero__profesion {
+    animation: encendido 1.4s ease-out 0.35s both;
+  }
+
+  /* El LED de la matrícula late suavemente */
+  .punto-vivo {
+    animation: latido 2.6s ease-out infinite;
+  }
+
+  /* Pulsos que recorren las pistas del circuito */
+  .hero__circuito .corriente {
+    opacity: 0.9;
+    animation: corriente 6s linear infinite;
+  }
+
+  .hero__circuito .corriente--lenta {
+    animation-duration: 9s;
+    animation-delay: -4s;
+  }
+
+  /* Aparición al hacer scroll. La clase "js-revelar" la pone js/main.js,
+     así que si el JavaScript no carga, todo se ve igual (sin animación). */
+  .js-revelar .revelar {
+    opacity: 0;
+  }
+
+  .js-revelar .revelar.visible {
+    opacity: 1;
+    animation: revelar 0.7s cubic-bezier(0.2, 0.65, 0.25, 1) var(--retraso, 0ms) backwards;
+  }
+
+  /* Pequeño levantamiento al pasar el mouse */
+  .boton:hover,
+  .whatsapp-flotante:hover {
+    transform: translateY(-2px);
+  }
+
+  .boton:active,
+  .whatsapp-flotante:active {
+    transform: translateY(0);
+  }
+
+  @media (hover: hover) {
+    .tarjeta:hover,
+    .contacto__item--enlace:hover {
+      transform: translateY(-4px);
+    }
+
+    .galeria__enlace:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  /* La foto ampliada aparece con un fundido corto */
+  .lightbox[open] {
+    animation: aparecer 0.25s ease-out;
+  }
+}
+
+
+/* 17. PANTALLAS MEDIANAS Y GRANDES ========================================= */
+
+/* Desde 520px: los botones del hero van uno al lado del otro */
+@media (min-width: 520px) {
+  .hero__botones {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+/* Desde 640px (tablet) */
+@media (min-width: 640px) {
+  .contenedor {
+    padding-inline: 32px;
+  }
+
+  .seccion {
+    padding: 96px 0;
+  }
+
+  .servicios {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  /* Las tarjetas pasan a tener el ícono arriba */
+  .tarjeta {
+    display: block;
+    padding: 26px;
+  }
+
+  .tarjeta__icono {
+    width: 54px;
+    height: 54px;
+    margin-bottom: 18px;
+    padding: 13px;
+  }
+
+  .tarjeta h3 {
+    margin-bottom: 10px;
+    font-size: 1.08rem;
+  }
+
+  .galeria {
+    gap: 18px;
+  }
+
+  .marca {
+    font-size: 1rem;
+  }
+}
+
+/* Desde 900px (computadora) */
+@media (min-width: 900px) {
+  :root {
+    --alto-encabezado: 72px;
+  }
+
+  .nav {
+    display: block;
+  }
+
+  /* En pantalla grande el circuito se ve completo */
+  .hero__circuito {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .hero {
+    padding: 72px 0 88px;
+  }
+
+  .servicios {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+
+  .galeria {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+
+  .sobre-mi {
+    grid-template-columns: 5fr 7fr;
+    gap: 72px;
+  }
+
+  .sobre-mi__foto {
+    margin-inline: 0;
+  }
+
+  /* El mapa se estira solo hasta el alto de la columna de datos */
+  .contacto {
+    grid-template-columns: 5fr 7fr;
+    gap: 22px;
+  }
+
+  .pie {
+    padding-bottom: 48px;
+  }
+
+  /* Lightbox en computadora: flechas a los costados, centradas */
+  .lightbox {
+    padding: 76px 96px 40px;
+  }
+
+  .lightbox__imagen {
+    max-height: calc(100vh - 170px);
+    max-height: calc(100dvh - 170px);
+  }
+
+  .lightbox__flecha {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+  }
+
+  .lightbox__flecha--anterior {
+    left: 24px;
+  }
+
+  .lightbox__flecha--siguiente {
+    right: 24px;
+  }
+}

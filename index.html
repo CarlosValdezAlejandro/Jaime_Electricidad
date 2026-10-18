@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <!-- ==========================================================================
+       DATOS BÁSICOS DE LA PÁGINA
+       Todo lo que está entre [CORCHETES] hay que completarlo.
+       Buscá la palabra "EDITAR" para encontrar cada dato que se puede cambiar.
+       ========================================================================== -->
+  <meta charset="UTF-8">
+
+  <!-- Hace que la página se adapte al ancho de cada celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- EDITAR: título que aparece en la pestaña del navegador y en Google -->
+  <title>[NOMBRE DEL ELECTRICISTA] | Electricista matriculado en [ZONA]</title>
+
+  <!-- EDITAR: descripción que muestra Google debajo del título (ideal: menos de 160 letras) -->
+  <meta name="description" content="Electricista matriculado en [ZONA]. Instalaciones domiciliarias, reparaciones, urgencias, tableros, iluminación y certificados. Pedí tu presupuesto por WhatsApp.">
+
+  <!-- Color de la barra del navegador en algunos celulares -->
+  <meta name="theme-color" content="#0a0e14">
+
+  <!-- Open Graph: cómo se ve el link cuando se comparte por WhatsApp, Facebook, etc. -->
+  <!-- EDITAR: título y descripción para cuando se comparte el link -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="[NOMBRE DEL ELECTRICISTA] | Electricista matriculado">
+  <meta property="og:description" content="Instalaciones, reparaciones, urgencias, tableros, iluminación y certificados en [ZONA].">
+  <!-- EDITAR (opcional): imagen que aparece al compartir el link.
+       Estas dos líneas necesitan la dirección COMPLETA de la página publicada
+       (acá no sirven las rutas cortas). Cuando la página ya esté online,
+       reemplazá TU-USUARIO y TU-REPOSITORIO y borrá las marcas de comentario
+       que están arriba y abajo de las dos líneas. -->
+  <!--
+  <meta property="og:url" content="https://TU-USUARIO.github.io/TU-REPOSITORIO/">
+  <meta property="og:image" content="https://TU-USUARIO.github.io/TU-REPOSITORIO/img/og-imagen.jpg">
+  -->
+
+  <!-- Ícono de la pestaña (un rayo) -->
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+
+  <!-- Tipografías de Google Fonts: Orbitron (títulos) e Inter (texto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;700;800&display=swap">
+
+  <!-- Estilos de la página -->
+  <link rel="stylesheet" href="css/estilos.css">
+
+  <!-- JavaScript de la página. "defer" hace que se ejecute cuando el HTML ya cargó.
+       Si este archivo falla, la página igual funciona: solo se pierden las animaciones
+       y la foto ampliada (las fotos se abren solas). -->
+  <script src="js/main.js" defer></script>
+</head>
+
+<body>
+  <!-- ==========================================================================
+       ÍCONOS REUTILIZABLES
+       Se dibujan una sola vez acá y se usan en varios lugares con <use href="#...">.
+       Este bloque no se ve en la página.
+       ========================================================================== -->
+  <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+    <!-- Rayo (logo) -->
+    <symbol id="icono-rayo" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M13.2 2 4.5 13.4h6.1L9.8 22l8.7-11.4h-6.1z"/>
+    </symbol>
+    <!-- Teléfono -->
+    <symbol id="icono-telefono" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>
+    </symbol>
+    <!-- WhatsApp -->
+    <symbol id="icono-whatsapp" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+    </symbol>
+    <!-- Tilde (check) -->
+    <symbol id="icono-check" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/>
+    </symbol>
+  </svg>
+
+  <!-- Link oculto para quienes navegan con teclado: aparece al apretar Tab -->
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- ==========================================================================
+       ENCABEZADO (queda fijo arriba al bajar)
+       ========================================================================== -->
+  <header class="encabezado">
+    <div class="contenedor encabezado__interior">
+      <!-- EDITAR: nombre -->
+      <a class="marca" href="#inicio">
+        <svg class="marca__icono" aria-hidden="true" focusable="false"><use href="#icono-rayo"/></svg>
+        <span class="marca__nombre">[NOMBRE DEL ELECTRICISTA]</span>
+      </a>
+
+      <!-- Menú: solo se ve en pantallas grandes. En el celular no hace falta. -->
+      <nav class="nav" aria-label="Secciones de la página">
+        <ul class="nav__lista lista-limpia">
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#trabajos">Trabajos</a></li>
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#zona">Zona</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <!-- EDITAR: teléfono -->
+      <a class="boton boton--primario boton--chico" href="tel:+54XXXXXXXXXX">
+        <svg class="icono" aria-hidden="true" focusable="false"><use href="#icono-telefono"/></svg>
+        Llamar
+      </a>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ========================================================================
+         1. HERO (portada): lo primero que se ve al entrar
+         ======================================================================== -->
+    <section class="hero" id="inicio" aria-labelledby="hero-titulo">
+
+      <!-- Dibujo decorativo de pistas de circuito (no se lee, solo adorna) -->
+      <svg class="hero__circuito" viewBox="0 0 1200 700" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" focusable="false">
+        <g class="pistas" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1200 70H1030l-40 40H860"/>
+          <path d="M1200 130h-130l-40 40v80l-40 40h-90"/>
+          <path d="M1200 210h-70l-30 30v180l-40 40H940"/>
+          <path d="M1200 520h-80l-40 40v80"/>
+          <path d="M840 700v-50l40-40h130"/>
+          <path d="M0 610h120l40 40h140"/>
+          <path d="M0 670h70l30 30"/>
+        </g>
+        <g class="nodos" stroke-width="2">
+          <circle cx="860" cy="110" r="5"/>
+          <circle cx="900" cy="290" r="5"/>
+          <circle cx="940" cy="460" r="5"/>
+          <circle cx="1080" cy="640" r="5"/>
+          <circle cx="1010" cy="610" r="5"/>
+          <circle cx="300" cy="650" r="5"/>
+        </g>
+        <!-- Pulsos de "corriente" que viajan por dos pistas (se apagan si se pide menos movimiento) -->
+        <g fill="none" stroke-width="3" stroke-linecap="round">
+          <path class="corriente" pathLength="100" d="M1200 130h-130l-40 40v80l-40 40h-90"/>
+          <path class="corriente corriente--lenta" pathLength="100" d="M1200 210h-70l-30 30v180l-40 40H940"/>
+        </g>
+      </svg>
+
+      <div class="contenedor hero__interior">
+        <!-- EDITAR: número de matrícula -->
+        <p class="hero__etiqueta">
+          <span class="punto-vivo" aria-hidden="true"></span>
+          Matrícula N° [XXXX]
+        </p>
+
+        <!-- EDITAR: nombre -->
+        <h1 class="hero__titulo" id="hero-titulo">
+          <span class="hero__nombre">[NOMBRE DEL ELECTRICISTA]</span>
+          <span class="hero__profesion">Electricista matriculado</span>
+        </h1>
+
+        <!-- EDITAR: texto de presentación -->
+        <p class="hero__texto">
+          Instalaciones, reparaciones y urgencias eléctricas en [ZONA].
+          Trabajo prolijo y seguro, con materiales normalizados y un presupuesto
+          claro antes de arrancar.
+        </p>
+
+        <div class="hero__botones">
+          <!-- EDITAR: teléfono -->
+          <a class="boton boton--primario" href="tel:+54XXXXXXXXXX">
+            <svg class="icono" aria-hidden="true" focusable="false"><use href="#icono-telefono"/></svg>
+            Llamar
+          </a>
+          <!-- EDITAR: WhatsApp -->
+          <a class="boton boton--whatsapp" href="https://wa.me/549XXXXXXXXXX?text=Hola, quiero consultar por un trabajo eléctrico" target="_blank" rel="noopener">
+            <svg class="icono" aria-hidden="true" focusable="false"><use href="#icono-whatsapp"/></svg>
+            Escribir por WhatsApp
+          </a>
+        </div>
+
+        <!-- EDITAR: años de experiencia y frases cortas -->
+        <ul class="hero__datos lista-limpia">
+          <li>Más de [X] años de experiencia</li>
+          <li>Presupuesto sin vueltas</li>
+          <li>Atención de urgencias</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ========================================================================
+         2. SERVICIOS
+         Para sacar un servicio, borrá su bloque <li class="tarjeta ..."> ... </li>.
+         Para agregar uno, copiá un bloque completo y cambiale el título y el texto.
+         ======================================================================== -->
+    <section class="seccion" id="servicios" aria-labelledby="servicios-titulo">
+      <div class="contenedor">
+        <div class="seccion__encabezado revelar">
+          <p class="seccion__etiqueta">01 · Servicios</p>
+          <h2 class="seccion__titulo" id="servicios-titulo">¿En qué te puedo ayudar?</h2>
+          <p class="seccion__bajada">
+            Trabajos eléctricos para casas, departamentos y comercios.
+            Si no ves lo que necesitás, consultame igual.
+          </p>
+        </div>
+
+        <!-- EDITAR: lista de servicios -->
+        <ul class="servicios lista-limpia">
+          <!-- Servicio: instalaciones domiciliarias -->
+          <li class="tarjeta revelar">
+            <svg class="tarjeta__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M3 10.5 12 3l9 7.5"/>
+              <path d="M5 9v11h14V9"/>
+              <path d="M12.8 11.5 10.3 15h3.4l-2.5 3.5"/>
+            </svg>
+            <h3>Instalaciones domiciliarias</h3>
+            <p>Instalaciones nuevas, ampliaciones y recableado completo de casas y departamentos, según la reglamentación de la AEA.</p>
+          </li>
+
+          <!-- Servicio: reparaciones y urgencias -->
+          <li class="tarjeta revelar">
+            <svg class="tarjeta__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M10.3 3.9 2.6 17.5a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/>
+              <path d="M12.6 9 10.4 13h3.2l-2.2 4"/>
+            </svg>
+            <h3>Reparaciones y urgencias</h3>
+            <p>Cortes de luz, cortocircuitos, enchufes que no andan o la térmica que salta a cada rato. Encuentro la falla y la soluciono.</p>
+          </li>
+
+          <!-- Servicio: tableros -->
+          <li class="tarjeta revelar">
+            <svg class="tarjeta__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <rect x="4" y="3" width="16" height="18" rx="2"/>
+              <path d="M7 6.5h10v5H7zM10.3 6.5v5M13.7 6.5v5"/>
+              <path d="M8.5 15h7M8.5 17.5h4"/>
+            </svg>
+            <h3>Tableros eléctricos</h3>
+            <p>Armado, cambio y ordenamiento de tableros con llaves térmicas y disyuntor diferencial para proteger a tu familia y tus equipos.</p>
+          </li>
+
+          <!-- Servicio: iluminación -->
+          <li class="tarjeta revelar">
+            <svg class="tarjeta__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z"/>
+              <path d="M9.5 18.5h5M10.5 21h3"/>
+            </svg>
+            <h3>Iluminación</h3>
+            <p>Instalación de luces LED, spots, apliques, iluminación exterior, sensores de movimiento y ventiladores de techo.</p>
+          </li>
+
+          <!-- Servicio: certificados -->
+          <li class="tarjeta revelar">
+            <svg class="tarjeta__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/>
+              <path d="M14 3v5h5"/>
+              <path d="m9 14.5 2 2 4-4.5"/>
+            </svg>
+            <h3>Certificados</h3>
+            <!-- EDITAR: ajustá este texto según los trámites que hagas en tu zona -->
+            <p>Certificado de instalación eléctrica apta, necesario para pedir medidor nuevo, aumento de potencia o regularizar tu instalación.</p>
+          </li>
+
+          <!-- Servicio: puesta a tierra (se puede borrar si no lo hacés) -->
+          <li class="tarjeta revelar">
+            <svg class="tarjeta__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M12 3v9M5 12h14M7.5 15.5h9M10 19h4"/>
+            </svg>
+            <h3>Puesta a tierra y protecciones</h3>
+            <p>Instalación y medición de puesta a tierra con jabalina, para evitar accidentes y daños en tus electrodomésticos.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ========================================================================
+         3. TRABAJOS REALIZADOS (galería de fotos)
+         ======================================================================== -->
+    <section class="seccion seccion--alt" id="trabajos" aria-labelledby="trabajos-titulo">
+      <div class="contenedor">
+        <div class="seccion__encabezado revelar">
+          <p class="seccion__etiqueta">02 · Trabajos realizados</p>
+          <h2 class="seccion__titulo" id="trabajos-titulo">Algunos trabajos</h2>
+          <p class="seccion__bajada">
+            Instalaciones y reparaciones terminadas. Tocá una foto para verla en grande.
+          </p>
+        </div>
+
+        <!-- EDITAR: fotos de trabajos
+             LAS FOTOS REALES VAN EN LA CARPETA img/trabajos/
+             La forma más fácil: subí tus fotos con los MISMOS nombres
+             (trabajo-1.jpg, trabajo-2.jpg, ...) y se reemplazan solas.
+             Después cambiá, en cada foto:
+               - el texto de alt="..." (describe la foto para quien no la ve)
+               - el texto de <figcaption> (el título corto que aparece abajo)
+             Para agregar una foto, copiá un bloque <li> ... </li> completo
+             y cambiá el nombre del archivo en los dos lugares (href y src). -->
+        <ul class="galeria lista-limpia">
+          <li class="galeria__item revelar">
+            <figure>
+              <a class="galeria__enlace" href="img/trabajos/trabajo-1.jpg">
+                <img src="img/trabajos/trabajo-1.jpg" alt="Tablero eléctrico domiciliario terminado, con llaves térmicas y disyuntor diferencial ordenados" width="1200" height="900" loading="lazy" decoding="async">
+              </a>
+              <figcaption>Tablero domiciliario</figcaption>
+            </figure>
+          </li>
+          <li class="galeria__item revelar">
+            <figure>
+              <a class="galeria__enlace" href="img/trabajos/trabajo-2.jpg">
+                <img src="img/trabajos/trabajo-2.jpg" alt="Cañerías y cajas eléctricas embutidas en la pared de una obra nueva" width="1200" height="900" loading="lazy" decoding="async">
+              </a>
+              <figcaption>Instalación en obra nueva</figcaption>
+            </figure>
+          </li>
+          <li class="galeria__item revelar">
+            <figure>
+              <a class="galeria__enlace" href="img/trabajos/trabajo-3.jpg">
+                <img src="img/trabajos/trabajo-3.jpg" alt="Living iluminado con spots LED embutidos en el techo" width="1200" height="900" loading="lazy" decoding="async">
+              </a>
+              <figcaption>Iluminación LED</figcaption>
+            </figure>
+          </li>
+          <li class="galeria__item revelar">
+            <figure>
+              <a class="galeria__enlace" href="img/trabajos/trabajo-4.jpg">
+                <img src="img/trabajos/trabajo-4.jpg" alt="Jabalina de puesta a tierra instalada dentro de su cámara de inspección" width="1200" height="900" loading="lazy" decoding="async">
+              </a>
+              <figcaption>Puesta a tierra</figcaption>
+            </figure>
+          </li>
+          <li class="galeria__item revelar">
+            <figure>
+              <a class="galeria__enlace" href="img/trabajos/trabajo-5.jpg">
+                <img src="img/trabajos/trabajo-5.jpg" alt="Frente de una casa de noche con apliques de luz exterior encendidos" width="1200" height="900" loading="lazy" decoding="async">
+              </a>
+              <figcaption>Iluminación exterior</figcaption>
+            </figure>
+          </li>
+          <li class="galeria__item revelar">
+            <figure>
+              <a class="galeria__enlace" href="img/trabajos/trabajo-6.jpg">
+                <img src="img/trabajos/trabajo-6.jpg" alt="Cables nuevos normalizados de distintos colores conectados en una caja de paso" width="1200" height="900" loading="lazy" decoding="async">
+              </a>
+              <figcaption>Recambio de cableado</figcaption>
+            </figure>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ========================================================================
+         4. SOBRE MÍ
+         ======================================================================== -->
+    <section class="seccion" id="sobre-mi" aria-labelledby="sobre-mi-titulo">
+      <div class="contenedor sobre-mi">
+        <!-- EDITAR: foto de perfil. Reemplazá img/foto-perfil.jpg por tu foto (mismo nombre). -->
+        <div class="sobre-mi__foto revelar">
+          <img src="img/foto-perfil.jpg" alt="Foto de [NOMBRE DEL ELECTRICISTA], electricista matriculado" width="800" height="1000" loading="lazy" decoding="async">
+        </div>
+
+        <div class="sobre-mi__texto revelar">
+          <p class="seccion__etiqueta">03 · Sobre mí</p>
+          <!-- EDITAR: nombre -->
+          <h2 class="seccion__titulo" id="sobre-mi-titulo">Hola, soy [NOMBRE DEL ELECTRICISTA]</h2>
+
+          <!-- EDITAR: tu presentación, años de experiencia y zona -->
+          <p>
+            Soy electricista matriculado y hace más de [X] años que trabajo en casas,
+            departamentos y comercios de [ZONA]. Mi trabajo es que tu instalación quede
+            segura, funcione bien y cumpla con la reglamentación.
+          </p>
+          <p>
+            Antes de empezar te explico qué hay que hacer y cuánto sale, sin sorpresas.
+            Llego en el horario acordado, trabajo con materiales de calidad y dejo todo
+            limpio al terminar.
+          </p>
+
+          <!-- EDITAR: años de experiencia y número de matrícula -->
+          <ul class="sobre-mi__datos lista-limpia">
+            <li>
+              <strong>[X]</strong>
+              <span>años de experiencia</span>
+            </li>
+            <li>
+              <strong>N° [XXXX]</strong>
+              <span>matrícula profesional</span>
+            </li>
+          </ul>
+
+          <ul class="sobre-mi__valores lista-limpia">
+            <li>
+              <svg class="icono" aria-hidden="true" focusable="false"><use href="#icono-check"/></svg>
+              Presupuesto claro antes de empezar
+            </li>
+            <li>
+              <svg class="icono" aria-hidden="true" focusable="false"><use href="#icono-check"/></svg>
+              Materiales normalizados y de calidad
+            </li>
+            <li>
+              <svg class="icono" aria-hidden="true" focusable="false"><use href="#icono-check"/></svg>
+              Puntualidad y orden: dejo todo limpio
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================================================
+         5. ZONA DE COBERTURA
+         ======================================================================== -->
+    <section class="seccion seccion--alt" id="zona" aria-labelledby="zona-titulo">
+      <div class="contenedor">
+        <div class="seccion__encabezado revelar">
+          <p class="seccion__etiqueta">04 · Zona de cobertura</p>
+          <h2 class="seccion__titulo" id="zona-titulo">¿Dónde trabajo?</h2>
+          <!-- EDITAR: zona -->
+          <p class="seccion__bajada">
+            Atiendo en [ZONA] y alrededores. Estas son las localidades y barrios
+            donde trabajo habitualmente:
+          </p>
+        </div>
+
+        <!-- EDITAR: localidades o barrios. Agregá o borrá líneas <li>...</li> según necesites. -->
+        <ul class="zona lista-limpia revelar">
+          <li>[LOCALIDAD 1]</li>
+          <li>[LOCALIDAD 2]</li>
+          <li>[LOCALIDAD 3]</li>
+          <li>[LOCALIDAD 4]</li>
+          <li>[LOCALIDAD 5]</li>
+          <li>[LOCALIDAD 6]</li>
+        </ul>
+
+        <p class="zona__nota revelar">
+          ¿No ves tu barrio en la lista? Escribime igual y vemos si llego.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ========================================================================
+         6. CONTACTO
+         ======================================================================== -->
+    <section class="seccion" id="contacto" aria-labelledby="contacto-titulo">
+      <div class="contenedor">
+        <div class="seccion__encabezado revelar">
+          <p class="seccion__etiqueta">05 · Contacto</p>
+          <h2 class="seccion__titulo" id="contacto-titulo">Pedí tu presupuesto</h2>
+          <p class="seccion__bajada">
+            Contame qué necesitás y, si podés, mandame fotos por WhatsApp:
+            así te paso un presupuesto más rápido.
+          </p>
+        </div>
+
+        <div class="contacto">
+          <ul class="contacto__lista lista-limpia">
+            <!-- Teléfono -->
+            <li class="revelar">
+              <!-- EDITAR: teléfono (el número que se marca y el que se ve) -->
+              <a class="contacto__item contacto__item--enlace" href="tel:+54XXXXXXXXXX">
+                <svg class="contacto__icono" aria-hidden="true" focusable="false"><use href="#icono-telefono"/></svg>
+                <span class="contacto__info">
+                  <span class="contacto__etiqueta">Teléfono</span>
+                  <span class="contacto__valor">[TELÉFONO]</span>
+                  <span class="contacto__ayuda">Llamar ahora</span>
+                </span>
+              </a>
+            </li>
+
+            <!-- WhatsApp -->
+            <li class="revelar">
+              <!-- EDITAR: WhatsApp -->
+              <a class="contacto__item contacto__item--enlace" href="https://wa.me/549XXXXXXXXXX?text=Hola, quiero consultar por un trabajo eléctrico" target="_blank" rel="noopener">
+                <svg class="contacto__icono contacto__icono--whatsapp" aria-hidden="true" focusable="false"><use href="#icono-whatsapp"/></svg>
+                <span class="contacto__info">
+                  <span class="contacto__etiqueta">WhatsApp</span>
+                  <span class="contacto__valor">Mandame un mensaje</span>
+                  <span class="contacto__ayuda">Abrir chat de WhatsApp</span>
+                </span>
+              </a>
+            </li>
+
+            <!-- Horarios -->
+            <li class="revelar">
+              <div class="contacto__item">
+                <svg class="contacto__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                  <circle cx="12" cy="12" r="9"/>
+                  <path d="M12 7v5l3.5 2"/>
+                </svg>
+                <div class="contacto__info">
+                  <span class="contacto__etiqueta">Horarios de atención</span>
+                  <!-- EDITAR: horarios -->
+                  <ul class="horarios lista-limpia">
+                    <li><span>Lunes a viernes</span> <strong>[HORARIO]</strong></li>
+                    <li><span>Sábados</span> <strong>[HORARIO]</strong></li>
+                    <li><span>Urgencias</span> <strong>Consultá disponibilidad</strong></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- EDITAR: mapa de Google Maps
+               Cómo poner tu mapa:
+               1. Abrí Google Maps y buscá tu zona o localidad.
+               2. Tocá "Compartir" > "Insertar un mapa" > "Copiar HTML".
+               3. Borrá todo el bloque <div class="mapa__placeholder"> ... </div> de abajo
+                  y pegá en su lugar lo que copiaste (empieza con <iframe).
+               No hace falta tocar el tamaño: la página lo acomoda sola.
+               Como referencia, el código que vas a pegar se parece a este:
+
+          <iframe src="PEGAR-ACÁ-EL-LINK-DE-TU-MAPA" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa de la zona de trabajo"></iframe>
+          -->
+          <div class="mapa revelar">
+            <div class="mapa__placeholder">
+              <svg class="mapa__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/>
+                <circle cx="12" cy="9.5" r="2.5"/>
+              </svg>
+              <p class="mapa__titulo">Mapa de la zona</p>
+              <!-- EDITAR: zona -->
+              <p>[ZONA]</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ==========================================================================
+       7. PIE DE PÁGINA
+       ========================================================================== -->
+  <footer class="pie">
+    <div class="contenedor pie__interior">
+      <!-- EDITAR: nombre -->
+      <p class="pie__marca">
+        <svg class="icono" aria-hidden="true" focusable="false"><use href="#icono-rayo"/></svg>
+        [NOMBRE DEL ELECTRICISTA]
+      </p>
+      <!-- EDITAR: número de matrícula -->
+      <p>Electricista matriculado · Matrícula N° [XXXX]</p>
+      <!-- El año se actualiza solo con JavaScript. Si el JS falla, queda el que está escrito acá. -->
+      <!-- EDITAR: nombre -->
+      <p>© <span id="anio">2026</span> [NOMBRE DEL ELECTRICISTA]. Todos los derechos reservados.</p>
+      <p><a class="pie__arriba" href="#inicio">Volver arriba ↑</a></p>
+    </div>
+  </footer>
+
+
+  <!-- ==========================================================================
+       BOTÓN FLOTANTE DE WHATSAPP (fijo abajo a la derecha)
+       ========================================================================== -->
+  <!-- EDITAR: WhatsApp -->
+  <a class="whatsapp-flotante" href="https://wa.me/549XXXXXXXXXX?text=Hola, quiero consultar por un trabajo eléctrico" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+    <svg aria-hidden="true" focusable="false"><use href="#icono-whatsapp"/></svg>
+    <span>WhatsApp</span>
+  </a>
+
+
+  <!-- ==========================================================================
+       LIGHTBOX: ventana para ver las fotos en grande.
+       Está oculta hasta que se toca una foto de la galería (lo maneja js/main.js).
+       ========================================================================== -->
+  <dialog class="lightbox" id="lightbox" aria-label="Foto ampliada">
+    <button class="lightbox__cerrar" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true" focusable="false">
+        <path d="M6 6l12 12M18 6 6 18"/>
+      </svg>
+      Cerrar
+    </button>
+    <p class="lightbox__contador" aria-live="polite"></p>
+
+    <figure class="lightbox__figura">
+      <!-- La foto y su descripción las completa js/main.js al tocar una foto de la galería -->
+      <img class="lightbox__imagen" alt="">
+      <figcaption class="lightbox__epigrafe"></figcaption>
+    </figure>
+
+    <button class="lightbox__flecha lightbox__flecha--anterior" type="button" aria-label="Foto anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <path d="M15 5l-7 7 7 7"/>
+      </svg>
+    </button>
+    <button class="lightbox__flecha lightbox__flecha--siguiente" type="button" aria-label="Foto siguiente">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <path d="M9 5l7 7-7 7"/>
+      </svg>
+    </button>
+  </dialog>
+</body>
+</html>
